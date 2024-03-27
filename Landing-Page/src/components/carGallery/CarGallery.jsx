@@ -15,22 +15,24 @@ import Filters from "../filters/CarsFilters";
 import Pagination from "../paginations/Paginations";
 
 const CarGallery = () => {
+  const [newCarInput, setNewCarInput] = useState({ brand: '', model: '', year: '', price: '' });
   const filterBrand = useSelector((state) => state.carGallery.filterBrand);
   const filterModel = useSelector((state) => state.carGallery.filterModel);
   const filterPrice = useSelector((state) => state.carGallery.filterPrice);
   const page = useSelector((state) => state.carGallery.page);
   const newCar = useSelector((state) => state.carGallery.newCar);
+ 
   const allCars = useSelector((state) => state.carGallery.allCars);
   const carsPerPage = useSelector((state) => state.carGallery.carsPerPage);
   const dispatch = useDispatch();
   
-  const [newCarInput, setNewCarInput] = useState({ brand: '', model: '', price: '' });
+  
 
   useEffect(() => {
     if (newCar) {
       dispatch(addCar(newCarInput));
       dispatch(setNewCar(false)); 
-      setNewCarInput({ brand: '', model: '', price: '' });
+      setNewCarInput({ brand: '', model: '', price: '', year:'' ,});
     }
   }, [newCar, dispatch, newCarInput]);
 
@@ -64,15 +66,10 @@ const handleInputChange = (e) => {
 };
 
 
-// const handleAddCar = () => {
-//   dispatch(addCar(newCarInput));
-//   setNewCarInput({ brand: '', model: '', price: '' });
- 
-// };
-
 const handleAddCar = () => {
-  dispatch([...cars, newCarInput]); // Исправлено с newCar.brand на newCarInput.brand и так далее
-  setNewCarInput({ brand: '', model: '', year: '', price: '' }); // Сбросить значения полей ввода после добавления автомобиля
+  const action = addCar(newCarInput);
+  dispatch(action);
+  setNewCarInput({ brand: '', model: '', year: '', price: '' });
 };
 
 
@@ -115,28 +112,28 @@ const handleAddCar = () => {
           type="text"
           name="brand"
           placeholder="Brand"
-          value={newCar.brand}
+          value={newCarInput.brand}
           onChange={handleInputChange}
         />
         <input
           type="text"
           name="model"
           placeholder="Model"
-          value={newCar.model}
+          value={newCarInput.model}
           onChange={handleInputChange}
         />
         <input
           type="text"
           name="year"
           placeholder="Year"
-          value={newCar.year}
+          value={newCarInput.year}
           onChange={handleInputChange}
         />
         <input
           type="text"
           name="price"
           placeholder="price"
-          value={newCar.price}
+          value={newCarInput.price}
           onChange={handleInputChange}
         />
         <div className={style.btn}>
