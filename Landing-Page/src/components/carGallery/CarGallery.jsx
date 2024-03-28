@@ -104,7 +104,7 @@ const handleAddCar = () => {
         onPageChange={handlePageChange}
       />
 
-<div className="add-car-form">
+<div className={style.carForm}>
         <div className={style.form}>
         <h2>Add a New Car</h2>
 
