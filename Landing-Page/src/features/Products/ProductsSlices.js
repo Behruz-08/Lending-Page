@@ -1,21 +1,25 @@
 // productsSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-  const response = await fetch('https://fakestoreapi.com/products');
-  const data = await response.json();
-  return data;
-});
+export const fetchProducts = createAsyncThunk(
+  "products/fetchProducts",
+  async () => {
+    const response = await fetch("https://dummyjson.com/products");
+    const data = await response.json();
+    console.log(data);
+    return data;
+  }
+);
 
 const productsSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState: {
     items: [],
-    loading: false,
+    loading: true,
     error: null,
     currentPage: 1,
     itemsPerPage: 10,
-    filter: '',
+    filter: "",
   },
   reducers: {
     setFilter: (state, action) => {
