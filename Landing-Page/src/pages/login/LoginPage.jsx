@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/navbar/Navbar';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const LoginPage = () => {
         if (username === 'user' && password === 'password') {
             setLoggedIn(true);
             navigate('/home');
+            return <Navbar/>
         } else {
             // Добавляем проверку на пустые поля
             if (username === '' || password === '') {
