@@ -20,9 +20,11 @@ const CarsFilters = () => {
     dispatch(setFilterBrand(e.target.value));
   };
 
+  
   const handleModelChange = (e) => {
-    dispatch(setFilterModel(e.target.value));
+    dispatch(setFilterModel(e.target.value)); // Добавлено изменение фильтра модели
   };
+  
 
   const handlePriceChange = (e) => {
     dispatch(setFilterPrice(e.target.value));

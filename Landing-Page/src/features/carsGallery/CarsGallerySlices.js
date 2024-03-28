@@ -19,8 +19,8 @@ const carGallerySlice = createSlice({
   reducers: {
     setFilterBrand(state, action) {
       state.filterBrand = action.payload;
-      state.page = 1;
       state.carsPerPage = action.payload === "" ? 27 : 9;
+      state.page = 1;
     },
     setFilterModel(state, action) { 
       state.filterModel = action.payload;
@@ -38,18 +38,27 @@ const carGallerySlice = createSlice({
       state.newCar = action.payload;
       state.page = 1;
     },
-    addCar(state, action) {
-      const newCarWithId = { ...action.payload, id: Date.now() };
-      state.allCars.push(newCarWithId);
-    },
-    // addCar(state, action) {
-    //   const newCarWithId = { ...action.payload, id: Date.now() };
-    //   state.allCars = [...state.allCars, newCarWithId];
-      
-    //   state.page = 1; // Переход на первую страницу после добавления
-    // },
+  
+
+  addCar(state, action) {
+    const newCarWithId = { ...action.payload, id: Date.now() };
     
+    // Проверяем, определен ли state.allCars и является ли он массивом
+    if (Array.isArray(state.allCars)) {
+      // Если да, добавляем новый автомобиль
+      state.allCars.push(newCarWithId);
+      // Устанавливаем новый автомобиль
+      state.newCar = newCarWithId;
+    } else {
+      // Если нет, инициализируем allCars как массив и добавляем новый автомобиль
+      state.allCars = [newCarWithId];
+      // Устанавливаем новый автомобиль
+      state.newCar = newCarWithId;
+    }
   },
+  
+
+   },
 });
 
 

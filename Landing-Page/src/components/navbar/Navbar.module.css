@@ -1,0 +1,23 @@
+.navbar{
+   
+    height: 20vh;
+    background-color: rgb(195, 238, 240);
+}
+
+.navbar ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+
+}
+
+.navbar ul li label{
+    font-size: 20px;
+    color: rgb(100, 95, 95);
+}
+
+.navbar ul li label:hover{
+    background-color: rgba(74, 101, 238, 0.753);
+}
